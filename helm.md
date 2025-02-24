@@ -37,10 +37,11 @@ helm plugin list
   
 ```bash
 # List all deployed releases in current namespace
-helm list -all
+helm list -all --date --deployed --pending --failed --ininstalled --superseded 
 
 # Retrieve information such as values/manifest/notes about a release
 helm get all <release-name>
+helm get hooks <release-name> 
 helm get values <release-name>
 helm get manifest <release-name>
 helm get notes <release-name>
@@ -52,6 +53,7 @@ helm uninstall <release-name>
 
 # View Release status/ History
 helm status <release-name>
+helm status <release-name> --revision <number>
 helm history <release-name>
 helm rollback <release-name> <revision>
 
