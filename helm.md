@@ -2,6 +2,7 @@
 
 Helm is a package manager for Kubernetes that simplifies deploying and managing applications using *charts*.
 
+https://helm.sh/docs/intro/cheatsheet/
 ---
 
 ## Core Concepts
@@ -12,19 +13,20 @@ Helm is a package manager for Kubernetes that simplifies deploying and managing 
 
 ---
 
-## Repository Management ( local machine )
-| Command                     | Description                              |
-|-----------------------------|------------------------------------------|
-| `helm repo add <repo-name> <repo-url>`| Add a new chart repository              |
-| `helm repo list`            | List all configured repositories        |
-| `helm repo update`          | Update local cache of repository charts |
-| `helm repo remove <repo-name>`   | Remove a repository                     |
-| `helm search repo <keyword>` |	Search added repositories for a keyword in charts |
-| `helm search hub <keyword>` |  Search for charts in the Artifact Hub or your own hub instance |
-
-**Example**:  
+## Repository Management ( local cache/machine )
+ 
 ```bash
+# Add a new chart repository
+helm repo add <repo-name> <repo-url>
 helm repo add bitnami https://charts.bitnami.com/bitnami
+
+# List/Update/remove repositories in local cache
+helm repo list
+helm repo update
+helm repo remove <repo-name>
+
+helm search repo <keyword> # Search added repositories for a keyword in charts
+helm search hub <keyword> # Search for charts in the Artifact Hub or your own hub instance
 
 # View a list of all installed plugins
 helm plugin list       
@@ -32,17 +34,25 @@ helm plugin list
 
 
 ## Managing Releases ( in k8s namespace / cluster )
-| Command	| Description |
-|-----------------------------|------------------------------------------|
-| helm list | List all deployed releases in the current namespace |
-| helm list --all| List all releases, including deleted in the current namespace |
-| helm status <release> |	Check the status of a release | 
-| helm uninstall <release>	 | Remove a release from the cluster | 
-| helm get values <release>	| Retrieve values used for a release |
-
-**Example**:  
+  
 ```bash
-# List all deployed releases
-helm list
-helm repo update
+# List all deployed releases in current namespace
+helm list -all
+
+# Retrieve information such as values/manifest/notes about a release
+helm get all <release-name>
+helm get values <release-name>
+helm get manifest <release-name>
+helm get notes <release-name>
+
+# Install/Upgrade/uninstall a release in the k8s cluster
+helm install <release-name> <chart-name>
+helm upgrade <release-name> <chart-name>
+helm uninstall <release-name>
+
+# View Release status/ History
+helm status <release-name>
+helm history <release-name>
+helm rollback <release-name> <revision>
+
 ```
