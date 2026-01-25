@@ -6,7 +6,7 @@
 
 https://helm.sh/docs/intro/cheatsheet/
 ---
-
+  
 ## Core Concepts
 - **Chart**: A package of pre-configured Kubernetes resources.
 - **Release**: An instance of a chart deployed/running in a Kubernetes cluster.
