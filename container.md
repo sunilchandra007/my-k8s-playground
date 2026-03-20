@@ -14,5 +14,5 @@ find /path -type d -user 1000 2>/dev/null
 ```
 # text search
 ```bash
-grep -Rni -C 3 "search-text" /app 2>/dev/null
+grep -Rni -C 3 "search-text" /path 2>/dev/null
 ```
